@@ -143,14 +143,17 @@ DevClub Management & Accountability System Overhaul & Comprehensive QA/AppSec Bu
 - [x] M5 Reviews, contribution, and notifications: weekly report form with 9 plan fields, auto-filled task/attendance metrics, automated department RAG status computation, transparent overall contribution formula (50% task + 30% attendance + 20% lead rating), lead rating editor, in-app notification center and action models.
 
 ## In progress
-M4 & M5 are COMPLETE & VERIFIED. M6 (Issues & Escalation, Level Up, and HackCrypt) is in progress:
-- Created database migrations `0014_issues.sql`, `0015_levelup.sql`, `0016_hackcrypt.sql`.
-- Built Issues & Escalation log module (`/issues`, `/issues/new`).
+- **Official Email Identities & Migration Plan (devclubtrcac.in)**:
+  - Conducted Phase 1 DNS & Email Provider audit for `devclubtrcac.in` on Vercel DNS (`ns1.vercel-dns.com`, `ns2.vercel-dns.com`). Confirmed 0 MX / SPF / DKIM records currently active on the public domain.
+  - Formulated Phase 2 Official Email Directory (`docs/OFFICIAL_DEVCLUB_EMAIL_DIRECTORY.md`) specifying personal mailboxes for all actual roster members (`firstname.lastname@devclubtrcac.in`) and functional role-based distribution aliases (`president@...`, `admin@...`).
+  - Created Phase 4/6 Email Migration Plan (`docs/EMAIL_MIGRATION_PLAN.md`) enforcing Supabase Auth UUID preservation (`ON DELETE RESTRICT` / CASCADE safety) and atomic migration steps.
+  - Built idempotent provisioning/migration utility (`scripts/migrate-email-identities.mjs`) featuring sanitized project reference masking, dry-run by default, owner safeguard for `manish.choudhary@devclubtrcac.in`, and QA account isolation (`@devclub.test`).
 
 ## Next up
-1. Complete Level Up Lectures pipeline (`/levelup`, `/levelup/new`).
-2. Complete HackCrypt module (`/hackcrypt` problem statements, team registrations, schedule).
-3. Proceed to M7 (Reports, PDF Export, Event-Day Mode, Final Production Polish).
+1. Domain Administrator adds MX/SPF/DKIM records to Vercel DNS for selected provider (Google Workspace, Zoho Mail, or Microsoft 365).
+2. Provision mailboxes and aliases on provider dashboard.
+3. Execute single test member migration upon user approval.
+4. Onboard leadership and department heads via self-service password reset.
 
 ## Decisions made
 - Members self check-in with location; leads can override manually.
